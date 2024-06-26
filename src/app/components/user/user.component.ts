@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { DUMMY_USERS } from '../../dummy-users';
-import { User } from '../../models/User';
+import { User } from '../../models/UserModel';
 
 @Component({
   selector: 'app-user',
