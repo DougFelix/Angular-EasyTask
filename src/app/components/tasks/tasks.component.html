@@ -1,4 +1,4 @@
-@if(isAddingTask) {
+@if(isAddingTask()) {
 <app-new-task [userId]="userId()" (close)="onCloseAddTask()" />
 }
 

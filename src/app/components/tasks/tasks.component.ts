@@ -1,4 +1,4 @@
-import { Component, input, inject } from '@angular/core';
+import { Component, input, inject, signal } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { Task } from '../../models/task.model';
 import { NewTaskComponent } from './new-task/new-task.component';
@@ -17,17 +17,17 @@ export class TasksComponent {
   private tasksService = inject(TasksService);
   userId = input.required<string>();
   name = input.required<string>();
-  isAddingTask = false;
+  isAddingTask = signal(false);
 
   get selectedUserTasks() {
     return this.tasksService.getUserTasks(this.userId());
   }
 
   onStartAddTask($event: MouseEvent) {
-    this.isAddingTask = true;
+    this.isAddingTask.set(true);
   }
 
   onCloseAddTask() {
-    this.isAddingTask = false;
+    this.isAddingTask.set(false);
   }
 }
