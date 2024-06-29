@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { DUMMY_USERS } from '../../dummy-users';
-import { User } from '../../models/UserModel';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user',
@@ -37,7 +37,7 @@ import { User } from '../../models/UserModel';
 /// SIGNALS
 export class UserComponent {
   user = input.required<User>();
-
+  selected = input.required<boolean>();
   select = output<string>();
 
   imagePath = computed(() => {
