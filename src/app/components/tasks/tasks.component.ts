@@ -1,14 +1,15 @@
 import { Component, input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { Task } from '../../models/task.model';
-import { NewTaskComponent } from "./new-task/new-task.component";
+import { NewTaskComponent } from './new-task/new-task.component';
+import { newTaskData } from '../../models/newTaskData.model';
 
 @Component({
-    selector: 'app-tasks',
-    standalone: true,
-    templateUrl: './tasks.component.html',
-    styleUrl: './tasks.component.css',
-    imports: [TaskComponent, NewTaskComponent]
+  selector: 'app-tasks',
+  standalone: true,
+  templateUrl: './tasks.component.html',
+  styleUrl: './tasks.component.css',
+  imports: [TaskComponent, NewTaskComponent],
 })
 export class TasksComponent {
   userId = input.required<string>();
@@ -51,5 +52,20 @@ export class TasksComponent {
 
   onStartAddTask($event: MouseEvent) {
     this.isAddingTask = true;
+  }
+
+  onCancelAddTask() {
+    this.isAddingTask = false;
+  }
+
+  onAddTask(taskData: newTaskData) {
+    this.tasks.push({
+      id: new Date().getTime().toString(),
+      userId: this.userId(),
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.dueDate,
+    });
+    this.isAddingTask = false;
   }
 }
